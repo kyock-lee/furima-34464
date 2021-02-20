@@ -14,7 +14,7 @@
 
 ### Association
 has_many :items
-
+has_many :purchasers
 
 
 ## items
@@ -26,39 +26,41 @@ has_many :items
 | description         | text    | null: false |
 | category_id         | integer | null: false |
 | status_id           | integer | null: false |
-| shipping_charges_id | integer | null: false |
+| shipping_charge_id  | integer | null: false |
 | shipping_area_id    | integer | null: false |
-| shipping_days_id    | integer | null: false |
+| shipping_day_id     | integer | null: false |
 | cost                | integer | null: false |
 
 ### Association
 belongs_to :users
-has_one :buyer_data
+has_one :purchasers
 
 
-## buyer_data
+## purchasers
 
 |Column                  |Type     |Options      |
 |------------------------|---------|-------------|
 | post_code              | string  | null: false |
 | shipping_area_id       | integer | null: false |
 | shipping_city          | string  | null: false |
-| shipping_adress        | string  | null: false |
-| building_name          | string  | null: false |
+| shipping_address       | string  | null: false |
+| building_name          | string  |             |
 | phone_number           | string  | null: false |
 
 
 ### Association
-belongs_to :items
+belongs_to :orders
 
 
-## card
+## orders
 
-|Column    |Type     |Options      |
-|----------|---------|-------------|
-| user_id  | integer | null: false |
-| items_id | integer | null: false |
+|Column    |Type     |Options                         |
+|----------|---------|--------------------------------|
+| user_id  | integer | null: false, foreign_key: true |
+| item_id  | integer | null: false, foreign_key: true |
 
 
 ### Association
 belongs_to :users
+belongs_to :items
+has_one :purchasers

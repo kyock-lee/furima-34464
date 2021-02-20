@@ -19,48 +19,49 @@ has_many :purchasers
 
 ## items
 
-|Column               |Type     |Options      |
-|---------------------|---------|-------------|
-| seller_name         | string  | null: false |
-| item_name           | string  | null: false |
-| description         | text    | null: false |
-| category_id         | integer | null: false |
-| status_id           | integer | null: false |
-| shipping_charge_id  | integer | null: false |
-| shipping_area_id    | integer | null: false |
-| shipping_day_id     | integer | null: false |
-| cost                | integer | null: false |
+|Column               |Type        |Options                         |
+|---------------------|------------|--------------------------------|
+| user_id             | references | null: false, foreign_key: true |
+| item_name           | string     | null: false                    |
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| shipping_charge_id  | integer    | null: false                    |
+| shipping_area_id    | integer    | null: false                    |
+| shipping_day_id     | integer    | null: false                    |
+| cost                | integer    | null: false                    |
 
 ### Association
-belongs_to :users
-has_one :purchasers
+belongs_to :user
+has_one :purchaser
 
 
 ## purchasers
 
-|Column                  |Type     |Options      |
-|------------------------|---------|-------------|
-| post_code              | string  | null: false |
-| shipping_area_id       | integer | null: false |
-| shipping_city          | string  | null: false |
-| shipping_address       | string  | null: false |
-| building_name          | string  |             |
-| phone_number           | string  | null: false |
+|Column              |Type         |Options                         |
+|--------------------|-------------|--------------------------------|
+| post_code          | string      | null: false                    |
+| shipping_area_id   | integer     | null: false                    |
+| shipping_city      | string      | null: false                    |
+| shipping_address   | string      | null: false                    |
+| building_name      | string      |                                |
+| phone_number       | string      | null: false                    |
+| order_id           | references  | null: false, foreign_key: true |
 
 
 ### Association
-belongs_to :orders
+belongs_to :order
 
 
 ## orders
 
-|Column    |Type     |Options                         |
-|----------|---------|--------------------------------|
-| user_id  | integer | null: false, foreign_key: true |
-| item_id  | integer | null: false, foreign_key: true |
+|Column    |Type        |Options                         |
+|----------|------------|--------------------------------|
+| user_id  | references | null: false, foreign_key: true |
+| item_id  | references | null: false, foreign_key: true |
 
 
 ### Association
-belongs_to :users
-belongs_to :items
-has_one :purchasers
+belongs_to :user
+belongs_to :item
+has_one :purchaser

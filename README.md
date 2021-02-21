@@ -21,7 +21,7 @@ has_many :purchasers
 
 |Column               |Type        |Options                         |
 |---------------------|------------|--------------------------------|
-| user_id             | references | null: false, foreign_key: true |
+| user                | references | null: false, foreign_key: true |
 | item_name           | string     | null: false                    |
 | description         | text       | null: false                    |
 | category_id         | integer    | null: false                    |
@@ -46,7 +46,7 @@ has_one :purchaser
 | shipping_address   | string      | null: false                    |
 | building_name      | string      |                                |
 | phone_number       | string      | null: false                    |
-| order_id           | references  | null: false, foreign_key: true |
+| order              | references  | null: false, foreign_key: true |
 
 
 ### Association
@@ -57,8 +57,8 @@ belongs_to :order
 
 |Column    |Type        |Options                         |
 |----------|------------|--------------------------------|
-| user_id  | references | null: false, foreign_key: true |
-| item_id  | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 
 ### Association

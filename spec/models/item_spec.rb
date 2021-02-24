@@ -42,7 +42,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'category_idが1だと出品できない' do
-          @item.category_id = "1"
+          @item.category_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Category must be other than 1")
         end
@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'status_idが1だと出品できない' do
-          @item.status_id = "1"
+          @item.status_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Status must be other than 1")
         end
@@ -66,7 +66,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'Shipping_charge_idが1だと出品できない' do
-          @item.shipping_charge_id = "1"
+          @item.shipping_charge_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
         end
@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'shipping_area_idが1だと出品できない' do
-          @item.shipping_area_id = "1"
+          @item.shipping_area_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
         end
@@ -90,7 +90,7 @@ RSpec.describe Item, type: :model do
         end
 
         it 'shipping_day_idが1だと出品できない' do
-          @item.shipping_day_id = "1"
+          @item.shipping_day_id = 1
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
         end

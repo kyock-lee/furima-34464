@@ -41,10 +41,22 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Category can't be blank")
         end
 
+        it 'category_idが1だと出品できない' do
+          @item.category_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Category must be other than 1")
+        end
+
         it 'status_idが空だと出品できない' do
           @item.status_id = ""
           @item.valid?
           expect(@item.errors.full_messages).to include("Status can't be blank")
+        end
+
+        it 'status_idが1だと出品できない' do
+          @item.status_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Status must be other than 1")
         end
 
         it 'Shipping_charge_idが空だと出品できない' do
@@ -53,16 +65,34 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
         end
 
+        it 'Shipping_charge_idが1だと出品できない' do
+          @item.shipping_charge_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+        end
+
         it 'shipping_area_idが空だと出品できない' do
           @item.shipping_area_id = ""
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping area can't be blank")
         end
 
+        it 'shipping_area_idが1だと出品できない' do
+          @item.shipping_area_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+        end
+
         it 'shipping_day_idが空だと出品できない' do
           @item.shipping_day_id = ""
           @item.valid?
           expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+        end
+
+        it 'shipping_day_idが1だと出品できない' do
+          @item.shipping_day_id = "1"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
         end
 
         it 'costが空だと出品できない' do
@@ -83,6 +113,29 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Cost must be less than 10000000")
         end
 
+        it 'costが半角英数混合では登録できない' do
+          @item.cost = "３０00"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Cost is not a number")
+        end
+
+        it 'costが半角英語だけでは登録できない' do
+          @item.cost = "aaaa"
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Cost is not a number")
+        end
+
+        it 'costが299以下では登録できない' do
+          @item.cost = 299
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Cost must be greater than or equal to 300")
+        end
+
+        it 'costが10000000以上では登録できない' do
+          @item.cost = 10000000
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Cost must be less than 10000000")
+        end
     end
   end
 end

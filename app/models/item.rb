@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
+    validates :image
     validates :item_name
     validates :description
     validates :cost, format: { with: /\A[0-9]+\z/ }, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 999999999}

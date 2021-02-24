@@ -68,20 +68,19 @@ RSpec.describe Item, type: :model do
         it 'costが空だと出品できない' do
           @item.cost = ""
           @item.valid?
-          expect(@item.errors.full_messages).to include("Cost can't be blank")
+          expect(@item.errors.full_messages).to include("Cost is not a number")
         end
 
         it 'costが全角数字だと出品できない' do
           @item.cost = "３０００"
           @item.valid?
-          binding.pry
-          expect(@item.errors.full_messages).to include("Cost is not a number.")
+          expect(@item.errors.full_messages).to include("Cost is not a number")
         end
 
         it 'costが設定範囲外だと出品できない' do
           @item.cost = 1000000000
           @item.valid?
-          expect(@item.errors.full_messages).to include("Cost is not a number")
+          expect(@item.errors.full_messages).to include("Cost must be less than 10000000")
         end
 
     end

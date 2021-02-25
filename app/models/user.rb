@@ -20,7 +20,6 @@ class User < ApplicationRecord
     end
 
     validates :birthday
-    validates :password, format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/}
-    
+    validates :password, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/ }
   end
 end

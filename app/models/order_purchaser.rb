@@ -16,8 +16,7 @@ class OrderPurchaser
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
-    #購入者情報)を保存する
-    Purchaser.create(post_code: post_code, shipping_area_id: shipping_area_id, shipping_city: shipping_city, shipping_adress: shipping_adress, building_name: building_name, phone_number: phone_number, order_id: order.id)
+    Purchaser.create(post_code: post_code, shipping_area_id: shipping_area_id, shipping_city: shipping_city, shipping_address: shipping_adress, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 
 end

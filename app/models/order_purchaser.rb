@@ -1,12 +1,12 @@
 class OrderPurchaser
   include ActiveModel::Model
-  attr_accessor :post_code, :shipping_area_id, :shipping_city, :shipping_adress, :building_name, :phone_number, :order_id, :user_id, :item_id
-
+  attr_accessor :post_code, :shipping_area_id, :shipping_city, :shipping_address, :building_name, :phone_number, :order_id, :user_id, :item_id, :token
+  
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :shipping_area_id
     validates :shipping_city
-    validates :shipping_adress
+    validates :shipping_address
     validates :phone_number, format: {with: /\A[0-9]{11}+\z/}
 
     validates :order_id
@@ -16,7 +16,7 @@ class OrderPurchaser
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
-    Purchaser.create(post_code: post_code, shipping_area_id: shipping_area_id, shipping_city: shipping_city, shipping_address: shipping_adress, building_name: building_name, phone_number: phone_number, order_id: order.id)
+    Purchaser.create(post_code: post_code, shipping_area_id: shipping_area_id, shipping_city: shipping_city, shipping_address: shipping_address, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 
 end

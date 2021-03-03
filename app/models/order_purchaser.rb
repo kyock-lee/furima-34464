@@ -8,9 +8,9 @@ class OrderPurchaser
     validates :shipping_city
     validates :shipping_address
     validates :phone_number, format: {with: /\A[0-9]{11}+\z/}
-
-    validates :order_id
+    validates :token
     validates :user_id
+  
     validates :item_id
   end
 

@@ -7,7 +7,5 @@ FactoryBot.define do
     shipping_address { '長町1−1−1' }
     building_name    { '長町ハイツ' }
     phone_number     { '01234567811' }
-
-    # formオブジェクトはアソシエーションを組めない
   end
 end

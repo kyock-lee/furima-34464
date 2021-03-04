@@ -27,20 +27,20 @@ RSpec.describe OrderPurchaser, type: :model do
       it '郵便番号がないと購入できない' do
         @order_purchaser.post_code = ''
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+        expect(@order_purchaser.errors.full_messages).to include("Post code can't be blank",
+                                                                 'Post code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号にハイフン(-)がないと購入できない' do
         @order_purchaser.post_code = '1234567'
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_purchaser.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号が全角数字だと購入できない' do
         @order_purchaser.post_code = '１２３-４５６７'
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
-        
+        expect(@order_purchaser.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it '都道府県を選択しないと購入できない' do
@@ -70,13 +70,13 @@ RSpec.describe OrderPurchaser, type: :model do
       it '電話番号は11桁でないと購入できない' do
         @order_purchaser.phone_number = '0123456789'
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_purchaser.errors.full_messages).to include('Phone number is invalid')
       end
 
       it '電話番号に半角数字以外が含まれると購入できない' do
         @order_purchaser.phone_number = '０１２３４５６７８９１'
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_purchaser.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end

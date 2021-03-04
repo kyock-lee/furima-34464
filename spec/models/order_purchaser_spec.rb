@@ -15,6 +15,11 @@ RSpec.describe OrderPurchaser, type: :model do
       it '必須項目の入力が完了していれば商品購入できる' do
         expect(@order_purchaser).to be_valid
       end
+
+      it '建物名の入力がなくても購入できる' do
+        @order_purchaser.building_name = ''
+        expect(@order_purchaser).to be_valid
+      end
     end
 
     context '商品購入ができないとき' do
@@ -47,6 +52,12 @@ RSpec.describe OrderPurchaser, type: :model do
         @order_purchaser.shipping_area_id = ''
         @order_purchaser.valid?
         expect(@order_purchaser.errors.full_messages).to include("Shipping area can't be blank")
+      end
+
+      it '選択した都道府県のid(shipping_area_id)が1以外でないと購入できない' do
+        @order_purchaser.shipping_area_id = 1
+        @order_purchaser.valid?
+        expect(@order_purchaser.errors.full_messages).to include("Shipping area must be other than 1")
       end
 
       it '市区町村を入力しないと購入できない' do

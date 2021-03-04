@@ -1,6 +1,6 @@
 class OrderPurchaser
   include ActiveModel::Model
-  attr_accessor :post_code, :shipping_area_id, :shipping_city, :shipping_address, :building_name, :phone_number, :order_id,
+  attr_accessor :post_code, :shipping_area_id, :shipping_city, :shipping_address, :building_name, :phone_number,
                 :user_id, :item_id, :token
 
   with_options presence: true do

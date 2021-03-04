@@ -20,6 +20,12 @@ RSpec.describe OrderPurchaser, type: :model do
         @order_purchaser.building_name = ''
         expect(@order_purchaser).to be_valid
       end
+
+      it '電話番号は10桁でも購入できる' do
+        @order_purchaser.phone_number = '0123456789'
+        expect(@order_purchaser).to be_valid
+      end
+
     end
 
     context '商品購入ができないとき' do
@@ -78,10 +84,10 @@ RSpec.describe OrderPurchaser, type: :model do
         expect(@order_purchaser.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it '電話番号は11桁でないと購入できない' do
-        @order_purchaser.phone_number = '0123456789'
+      it '電話番号は10桁、11桁でないと購入できない' do
+        @order_purchaser.phone_number = '012345678910'
         @order_purchaser.valid?
-        expect(@order_purchaser.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_purchaser.errors.full_messages).to include("Phone number is invalid")
       end
 
       it '電話番号に半角数字以外が含まれると購入できない' do
